@@ -1,7 +1,7 @@
 CC=gcc
 #INCDIRS = -I/ascldap/users/mtshowe/mysql/include 
-INCDIRS = -I/opt/rh/rh-mysql57/root/usr/include/mysql
-LDFLAGS = -g -L/usr/lib64/mysql -L/ascldap/users/mtshowe/isc/src/parse_slurm
+INCDIRS = -I/usr/include/mysql
+LDFLAGS = -g -L/usr/lib64/mysql 
 #LDFLAGS = -g -L/ascldap/users/mtshowe/mysql/lib
 
 all: parse_slurm
