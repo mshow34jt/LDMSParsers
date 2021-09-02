@@ -1,0 +1,1 @@
+10/09/2012 11:38:12;S;137670.sdb;user=dhguo group=bw_staff jobname=STDIN queue=batch ctime=1349800654 qtime=1349800654 etime=1349800654 start=1349800692 owner=dhguo@h2ologin3 exec_host=nid25433/0 Resource_List.mppnodes=1152 1248 Resource_List.neednodes=2 Resource_List.nodect=2 Resource_List.nodes=2 Resource_List.walltime=00:30:00
