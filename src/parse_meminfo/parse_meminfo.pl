@@ -18,7 +18,7 @@ my $queryHeader="insert ignore into meminfo(cTime,cTime_usec,DT,DT_usec,Producer
 #my $filename=$ARGV[0];
 my $lineCounter=0;
 my $valCounter=0;
-my $valCount=11;
+my $valCount=16;
 my $f1;
 my $f2;
 my $f3;
@@ -30,6 +30,11 @@ my $f8;
 my $f9;
 my $f10;
 my $f11;
+my $f12;
+my $f13;
+my $f14;
+my $f15;
+my $f16;
 my $values;
 my $dsn= "DBI:mysql:ISC:host=127.0.0.1:port=15306";
 	
@@ -69,18 +74,18 @@ while (my $line = <STDIN>) {
 #    print "reading line $lineCounter\n";
     if($lineCounter<$numLines)
     {
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11) = split(',',$line,$valCount);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16) = split(',',$line,$valCount);
         $values.="(".floor($f1).',';
-	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11";	
+	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f10,$f12,$f14";	
 	$values.="),\n";
 #	print "values=$values\n";
     }
     else
     {
 
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11) = split(',',$line,$valCount);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16) = split(',',$line,$valCount);
         $values.="(".floor($f1).',';
-        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11";
+        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f10,$f12,$f14";
 	$values.=")";
 #	push (@queryArray, $queryHeader.$values."\n");
 	if($thread_q->pending())
