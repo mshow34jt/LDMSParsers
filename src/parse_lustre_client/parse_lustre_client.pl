@@ -11,14 +11,14 @@ my $nthreads = 4;
 my $thread_q = Thread::Queue -> new();
 my $pending_t=0;
 
-my $numLines=4000;
+my $numLines=2000;
 #my @queryArray;
-my $queryHeader="insert ignore into Lustre_Client(cTime,cTime_usec,DT,DT_usec,ProducerName,CompId,jobid,gscratch_read_bytes_rate,gscratch_write_bytes_rate,gscratch_open_rate,gscratch_close_rate,gscratch_seek_rate,gscratch_getattr_rate,gscratch_create_rate) values ";
+my $queryHeader="insert ignore into lustre_client(cTime,cTime_usec,DT,DT_usec,ProducerName,CompId,jobid,fs_name,open_rate,close_rate,seek_rate,getattr_rate,create_rate) values ";
 
 #my $filename=$ARGV[0];
 my $lineCounter=0;
 my $valCounter=0;
-my $valCount=13;
+my $valCount=20;
 my $f1;
 my $f2;
 my $f3;
@@ -33,6 +33,12 @@ my $f11;
 my $f12;
 my $f13;
 my $f14;
+my $f15;
+my $f16;
+my $f17;
+my $f18;
+my $f19;
+my $f20;
 my $values;
 my $dsn= "DBI:mysql:ISC:host=127.0.0.1:port=15306";
 	
@@ -72,18 +78,18 @@ while (my $line = <STDIN>) {
 #    print "reading line $lineCounter\n";
     if($lineCounter<$numLines)
     {
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14) = split(',',$line,14);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20) = split(',',$line,20);
         $values.="(".floor($f1).',';
-	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14";	
+	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,\'$f8\',$f10,$f12,$f14,$f16,$f18";	
 	$values.="),\n";
 #	print "values=$values\n";
     }
     else
     {
 
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14) = split(',',$line,14);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20) = split(',',$line,20);
         $values.="(".floor($f1).',';
-        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14";
+        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,\'$f8\',$f10,$f12,$f14,$f16,$f18";
 	$values.=")";
 #	push (@queryArray, $queryHeader.$values."\n");
 	if($thread_q->pending())

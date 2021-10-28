@@ -20,7 +20,7 @@ my @job=split(/\|/,$line);
 #print Dumper \@job;
 if ($job[72] eq "RUNNING")
 	{
-		$joblist.="$job[1],";	
+		$joblist.="'$job[1]',";	
 	}
 #remove the last comma
 }
@@ -32,9 +32,9 @@ $sth->execute();
 #print "Joblist ($joblist)\n";
 
  while (my @row = $sth->fetchrow_array) {
-   print "$row[0],";
+   print "$row[0] ";
 #      $joblist.=$row[0].",";
 
       }
-
+  print "\n";
  $dbcon->disconnect(); 
