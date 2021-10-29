@@ -18,7 +18,7 @@ my $queryHeader="insert ignore into gw_sysclassib(cTime,cTime_usec,DT,DT_usec,Pr
 #my $filename=$ARGV[0];
 my $lineCounter=0;
 my $valCounter=0;
-my $valCount=24;
+my $valCount=42;
 my $f1;
 my $f2;
 my $f3;
@@ -43,6 +43,24 @@ my $f21;
 my $f22;
 my $f23;
 my $f24;
+my $f25;
+my $f26;
+my $f27;
+my $f28;
+my $f29;
+my $f30;
+my $f31;
+my $f32;
+my $f33;
+my $f34;
+my $f35;
+my $f36;
+my $f37;
+my $f38;
+my $f39;
+my $f40;
+my $f41;
+my $f42;
 my $values;
 my $dsn= "DBI:mysql:ISC:host=127.0.0.1:port=15306";
 	
@@ -82,18 +100,18 @@ while (my $line = <STDIN>) {
 #    print "reading line $lineCounter\n";
     if($lineCounter<$numLines)
     {
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24) = split(',',$line,$valCount);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24,$f25,$f26,$f27,$f28,$f29,$f30,$f31,$f32,$f33,$f34,$f35,$f36,$f37,$f38,$f39,$f40,$f41,$f42) = split(',',$line,$valCount);
         $values.="(".floor($f1).',';
-	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24";	
+	$values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f10,$f12,$f14,$f16,$f18,$f20,$f22,$f24,$f26,$f28,$f30,$f32,$f34,$f36,$f38,$f40";	
 	$values.="),\n";
 #	print "values=$values\n";
     }
     else
     {
 
-	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24) = split(',',$line,$valCount);
+	($f1,$f2,$f3,$f4,$f5,$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24,$f25,$f26,$f27,$f28,$f29,$f30,$f31,$f32,$f33,$f34,$f35,$f36,$f37,$f38,$f39,$f40,$f41,$f42,$f25,$f26,$f27,$f28,$f29,$f30,$f31,$f32,$f33,$f34,$f35,$f36,$f37,$f38,$f39,$f40,$f41,$f42) = split(',',$line,$valCount);
         $values.="(".floor($f1).',';
-        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f9,$f10,$f11,$f12,$f13,$f14,$f15,$f16,$f17,$f18,$f19,$f20,$f21,$f22,$f23,$f24";
+        $values.="$f2,$f3,$f4,\'$f5\',$f6,$f7,$f8,$f10,$f12,$f14,$f16,$f18,$f20,$f22,$f24,$f26,$f28,$f30,$f32,$f34,$f36,$f38,$f40";
 	$values.=")";
 #	push (@queryArray, $queryHeader.$values."\n");
 	if($thread_q->pending())
