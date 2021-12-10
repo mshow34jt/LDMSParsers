@@ -13,7 +13,7 @@ my $pending_t=0;
 
 my $numLines=4000;
 #my @queryArray;
-my $queryHeader="insert ignore into lnet_stats(cTime,cTime_usec,DT,DT_usec,ProducerName,CompId,jobid,send_rate,recv_rate,drop_rate) values ";
+my $queryHeader="insert ignore into lnet_stats(cTime,cTime_usec,DT,DT_usec,ProducerName,CompId,jobid,device,send_rate,recv_rate,drop_rate) values ";
 
 #my $filename=$ARGV[0];
 my $lineCounter=0;
