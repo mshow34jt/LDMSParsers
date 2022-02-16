@@ -13,17 +13,17 @@
 #define MAXSAFESIZE 4097
 #define MAXLINESIZE 4197576
 
-#define JOBID 1
-#define USER 96
-#define GROUP 27
-#define ACCOUNT 2
-#define JOBNAME
-#define CTIME 73
-#define ELIGIBLE 23
-#define START 71
-#define END 24
-#define STATE 72
-#define NODELIST 51
+//#define JOBID 1
+//#define USER 96
+//#define GROUP 27
+//#define ACCOUNT 2
+//#define JOBNAME
+//#define CTIME 73
+//#define ELIGIBLE 23
+//#define START 71
+//#define END 24
+//#define STATE 72
+//#define NODELIST 51
 #define     delim  "|"
 #define EXPECTFIELDS 101
 
@@ -90,45 +90,6 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 			while(token!=NULL)
                         {
           //                    printf("Index %d:%s\n",index,token);
-/*			      switch(str2inti2(token))
-				{
-					case (str2int2("JobID"))
-
-						jobidIdx=index;
-						break;
-                                        case str2int2("User"):
-                                                userIdx=index;
-                                                break;                                        
-					case str2int2("Group"):
-                                                groupIdx=index;
-                                                break;                                        
-					case str2int2("Account"):
-                                                acountIdx=index;
-                                                break;
-                                        case str2int(2"JobName"):
-                                                jobnameIdx=index;
-                                                break;
-                                        case str2int2("Submit"):
-                                                ctimeIdx=index;
-                                                break;
-                                        case str2int2("Eligible"):
-                                                eligibleIdx=index;
-                                                break;
-                                        case str2int2("Start"):
-                                                startIdx=index;
-                                                break;
-                                        case str2int2("End"):
-                                                endIdx=index;
-                                                break;
-                                        case str2int2("State"):
-                                                stateIdx=index;
-                                                break;
-                                        case str2int2("NodeList"):
-                                                nodelistIdx=index;
-                                                break;
-
-				}
-*/
 				        if(!strcmp(token,"JobID"))
                                                 jobidIdx=index;
                                         if(!strcmp(token,"User"))
@@ -158,7 +119,9 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 		}
 		else
 		{
-			nFieldCount=EXPECTFIELDS;
+		//	nFieldCount=EXPECTFIELDS;
+		printf("Missing expected header\n");
+		exit(3);
 		}
 	}
 }
@@ -187,9 +150,10 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 				while ((token=strsep(&end,delim)) != NULL)
 				{
 					//printf("Index %d:%s\n",index,token);
-					switch(index)
+					
+					
+					if(index==jobidIdx)
 					{
-						case JOBID:
 						if(token)
 						{
 							//underscore=strchr(token,'_');
@@ -200,44 +164,52 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 							//}
 							//job.jobid=strtod(token,NULL);
 							sprintf(job.jobid,"%s",token);
+							printf("Jobid=%s\n",&job.jobid);
 						}
-						break;
+					}
 					
-						case ACCOUNT :
+					if(index==accountIdx)
+					{        
                                                 if(token)
                                                         sprintf(job.account,"%s",token);
-                                                break;
-                                                case END :
+					}
+					if(index==endIdx)
+					{
                                                 if(token)
                                                         sprintf(job.end,"%s",token);
 				//		if(print)
 				//				printf("Index:%d End=%s\n",index,token);
-                                                break;
-                                                case GROUP :
+					}
+					if(index==groupIdx)
+	                                {
                                                 if(token)
                                                         sprintf(job.group,"%s",token);
-                                                break;
-                                                case NODELIST :
+					}
+                                	if(index==nodelistIdx)        
+					{
                                                 if(token)
                                                         sprintf(job.nodelist,"%s",token);
-                                                break;
-						case START :
+					}
+					if(index==startIdx)	
+					{
                                                 if(token)
                                                         sprintf(job.start,"%s",token);
-                                                break;
-						case STATE :
+					}
+					if(index==stateIdx)
+					{	
                                                 if(token)
                                                         sprintf(job.state,"%s",token);
-                                                break;
-						case CTIME :
+                                        }
+					if(index==ctimeIdx)
+					{
                                                 if(token)
                                                         sprintf(job.ctime,"%s",token);
-                                                break;
-                                                case USER :
+					}
+					if(index==userIdx)
+					{
                                                 if(token)
                                                         sprintf(job.user,"%s",token);
-						break;
-					}
+					}	
 //					if (print)
 //						printf("Index:%d data %s\n",index,token);
 					index+=1;
@@ -276,7 +248,7 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 					sprintf(sqlbuf, "select nid from job_hosts where jobid='%s' limit 1",job.jobid);
 					sqlReturn = mysql_query(&mysql, sqlbuf);
 					res = mysql_store_result(&mysql);
-  					row = mysql_fetch_row(res);
+ 					row = mysql_fetch_row(res);
 					if(row) // if there are entries in the job+_hosts table then dont readd them
 						repeat=1;
 					else 
@@ -306,7 +278,7 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 							//	printf("Insert %d,%d\n",job.jobid,atoi(token));
 								 sprintf(sqlbuf, "INSERT INTO job_hosts(jobid,nid) values('%s',%d)",job.jobid,atoi(token));
                                                                  sqlReturn = mysql_query(&mysql, sqlbuf);
-                                                                 //if(sqlReturn) printf("Error is %s\n",mysql_error(&mysql));
+                                                                 if(sqlReturn) printf("Error is %s\n",mysql_error(&mysql));
 							}	
 							else
 							{
@@ -320,7 +292,7 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 								{
 									sprintf(sqlbuf, "INSERT INTO job_hosts(jobid,nid) values('%s',%d)",job.jobid,i); 	
 									sqlReturn = mysql_query(&mysql, sqlbuf);
-                                        			//	if(sqlReturn) printf("Error is %s\n",mysql_error(&mysql));
+                                        				//if(sqlReturn) printf("Error is %s\n",mysql_error(&mysql));
 								}
 							}
 							token=strtok(NULL,",");
@@ -346,7 +318,7 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 				}
 				else if(!strcmp(job.state,"COMPLETED"))
 				{
-				//	printf("%d,%s,%s,%s,%s,%s,%s\n", job.jobid, job.user, job.group, job.account, job.ctime, job.start,job.end);
+				//	printf("%s,%s,%s,%s,%s,%s,%s\n", job.jobid, job.user, job.group, job.account, job.ctime, job.start,job.end);
 					sprintf(sqlbuf, "UPDATE jobs set status='Completed', user='%s', user_group='%s', account='%s', ctime='%s',  start='%s',`end`='%s'  WHERE jobid='%s'", job.user, job.group, job.account,  job.ctime,  job.start, job.end, job.jobid);	
 					sqlReturn = mysql_query(&mysql, sqlbuf);
                                         if(sqlReturn) // Handle this better
