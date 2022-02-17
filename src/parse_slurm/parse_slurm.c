@@ -164,7 +164,7 @@ if (fgets(linein, MAXLINESIZE, stdin) != NULL)
 							//}
 							//job.jobid=strtod(token,NULL);
 							sprintf(job.jobid,"%s",token);
-							printf("Jobid=%s\n",&job.jobid);
+							//printf("Jobid=%s\n",&job.jobid);
 						}
 					}
 					
