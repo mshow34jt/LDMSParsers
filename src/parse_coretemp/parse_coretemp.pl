@@ -66,7 +66,7 @@ while (my $line = <STDIN>) {
     if($lineCounter<$numLines)
     {
 	@fields = split(',',$line);
-        @temps=($fields[10],$fields[17],$fields[24],$fields[31],$fields[38],$fields[45],$fields[52],$fields[59],$fields[66],$fields[73],$fields[80],$fields[87],$fields[94],$fields[101],$fields[108],$fields[115],$fields[122],$fields[129],$fields[136],$fields[143],$fields[150],$fields[157],$fields[164],$fields[171],$fields[178],$fields[185],$fields[192],$fields[199],$fields[206],$fields[213],$fields[220],$fields[227],$fields[234],$fields[241]);
+	@temps=($fields[9],$fields[16],$fields[23],$fields[30],$fields[37],$fields[44],$fields[51],$fields[58],$fields[65],$fields[72],$fields[79],$fields[86],$fields[93],$fields[100],$fields[107],$fields[114],$fields[121],$fields[128],$fields[135],$fields[142],$fields[149],$fields[156],$fields[163],$fields[170],$fields[177],$fields[184],$fields[191],$fields[198],$fields[205],$fields[212],$fields[219],$fields[226],$fields[233],$fields[240]);
         $avgTemp=(sum(@temps))/34;
         $maxTemp=max(@temps);
 #        print("The max is ".$maxTemp."\n");
@@ -80,7 +80,7 @@ while (my $line = <STDIN>) {
     {
 
 	@fields = split(',',$line);
-        @temps=($fields[10],$fields[17],$fields[24],$fields[31],$fields[38],$fields[45],$fields[52],$fields[59],$fields[66],$fields[73],$fields[80],$fields[87],$fields[94],$fields[101],$fields[108],$fields[115],$fields[122],$fields[129],$fields[136],$fields[143],$fields[150],$fields[157],$fields[164],$fields[171],$fields[178],$fields[185],$fields[192],$fields[199],$fields[206],$fields[213],$fields[220],$fields[227],$fields[234],$fields[241]);
+	@temps=($fields[9],$fields[16],$fields[23],$fields[30],$fields[37],$fields[44],$fields[51],$fields[58],$fields[65],$fields[72],$fields[79],$fields[86],$fields[93],$fields[100],$fields[107],$fields[114],$fields[121],$fields[128],$fields[135],$fields[142],$fields[149],$fields[156],$fields[163],$fields[170],$fields[177],$fields[184],$fields[191],$fields[198],$fields[205],$fields[212],$fields[219],$fields[226],$fields[233],$fields[240]);
         $avgTemp=(sum(@temps))/34;
         $maxTemp=max(@temps);
         print("The max is ".$maxTemp."\n");
